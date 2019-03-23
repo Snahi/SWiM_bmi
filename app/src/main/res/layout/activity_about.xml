@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linear_layout_about"
+        tools:context=".AboutActivity"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/bmi_aboutActivity_layoutMargin">
+    <TextView
+            android:text="@string/bmi_activityAboutTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_aboutTitle"
+            android:layout_weight="1"
+            android:textSize="@dimen/bmi_aboutActivity_aboutTitleTextSize" android:textAlignment="center"
+            />
+    <TextView
+            android:text="@string/bmi_activityAbout_aboutText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bmi_aboutActivity_aboutTextTextSize"
+            android:layout_weight="2"
+            android:id="@+id/tv_about"
+            android:layout_marginTop="@dimen/bmi_aboutActivity_aboutTextMarginTop"
+            />
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bmi_activityAbout_emailContentHeight"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/tm_emailContent"
+            android:layout_weight="7"
+            android:hint="@string/bmi_aboutActivity_emailContentHint" android:background="@color/bmi_backgroundColor"
+            android:padding="@dimen/bmi_aboutActivity_emailContentPadding"/>
+    <Button
+            android:text="@string/bmi_aboutActivity_buttonSendText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/but_send"
+            android:onClick="onSendEmailClicked" android:background="@color/colorPrimary"/>
+</LinearLayout>
