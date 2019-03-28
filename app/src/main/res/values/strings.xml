@@ -31,9 +31,11 @@
         symptomatic of an underlying disease. Unexplained weight loss may require professional medical diagnosis.
         Underweight can also be a primary causative condition. Severely underweight individuals may have poor physical
         stamina and a weak immune system, leaving them open to infection. According to Robert E. Black of the Johns
-        Hopkins School of Public Health (JHSPH), Underweight status </string>
+        Hopkins School of Public Health (JHSPH), Underweight status
+    </string>
     <string name="normal_advice">
-        normal weight is a weight that is believed to be maximally healthful for a person, based chiefly on height but modified by
+        normal weight is a weight that is believed to be maximally healthful for a person, based chiefly on height but
+        modified by
         factors such as gender, age, build, and degree of muscular development.
     </string>
     <string name="overweight_advice">
@@ -79,4 +81,9 @@
     <string name="bmi_aboutActivity_buttonSendText">Send email</string>
     <string name="bmi_activityDetails_adviceDetailsDefaultText">advice</string>
     <string name="bmi_details_bmiDetailsImageDesc">image</string>
+    <string name="bmi_menu_historyTitle">History</string>
+    <string name="bmi_saved_elemnt_weight_label">Weight:</string>
+    <string name="bmi_saved_element_weight_label">bmi_saved_element_weight</string>
+    <string name="bmi_saved_element_init_text">0</string>
+    <string name="bmi_saved_element_height_label">Height:</string>
 </resources>

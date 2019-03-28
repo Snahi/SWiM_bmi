@@ -1,5 +1,6 @@
 package com.snavi.swim_bmi
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,11 +8,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import com.snavi.swim_bmi.json.*
 import kotlinx.android.synthetic.main.activity_main.*
 import com.snavi.swim_bmi.logic.WeightUnit
 import com.snavi.swim_bmi.logic.HeightUnit
 import com.snavi.swim_bmi.logic.calculateBMI
 import com.snavi.swim_bmi.logic.convert
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 // const bmi ranges
@@ -41,6 +45,18 @@ class MainActivity : AppCompatActivity() {
         const val IS_BMI_VISIBLE_KEY     = "is_bmi_visible"
         const val WEIGHT_UNIT_KEY        = "weight_unit"
         const val HEIGHT_UNIT_KEY        = "height_unit"
+
+        const val STORE_WEIGHT_IDX      = 0
+        const val STORE_WEIGHT_UNIT_IDX = 1
+        const val STORE_HEIGHT_IDX      = 2
+        const val STORE_HEIGHT_UNIT_IDX = 3
+        const val STORE_BMI_IDX         = 4
+        const val STORE_DATE_IDX        = 5
+
+        // sharedPrefs
+        const val FILE_NAME                    = "saved_bmi"
+        const val NUM_OF_CALCULATIONS_TO_STORE = 10
+        const val RECORD_KEY                   = "stored_records"
     }
 
 
@@ -59,6 +75,8 @@ class MainActivity : AppCompatActivity() {
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        invalidateOptionsMenu()
     }
 
 
@@ -79,10 +97,38 @@ class MainActivity : AppCompatActivity() {
             R.id.mi_kg_cm   -> changeUnits(WeightUnit.KG, HeightUnit.CM)
             R.id.mi_lbs_ft  -> changeUnits(WeightUnit.LBS, HeightUnit.FT)
             R.id.mi_about   -> startActivity(Intent(this, AboutActivity::class.java))
+            R.id.mi_history -> startHistory()
             else            -> return false
         }
 
         return true
+    }
+
+
+
+    override
+    fun onPrepareOptionsMenu(a_menu: Menu): Boolean
+    {
+        val item = a_menu.getItem(0)
+
+        if (getData().length > 2) item.setEnabled(true)
+        else item.setEnabled(false)
+
+        return true
+    }
+
+
+
+    private fun startHistory()
+    {
+        val data = getData()
+        if (data.length > 2)
+        {
+            val intent = Intent(this, HistoryActivity::class.java)
+            intent.putExtra(HistoryActivity.SAVED_BMI_KEY, getBmiHashMap(data))
+
+            startActivity(intent)
+        }
     }
 
 
@@ -151,6 +197,9 @@ class MainActivity : AppCompatActivity() {
         m_bmi_string = getBmiString(m_bmi)
 
         m_is_bmi_visible = true
+
+        saveResult(weight, m_currentWeightUnit, height, m_currentHeightUnit, m_bmi)
+        invalidateOptionsMenu()
 
         updateBmiDisplay()
     }
@@ -293,6 +342,75 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra(BMI_KEY, m_bmi)
 
         startActivity(intent)
+    }
+
+
+
+    // history ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    private fun saveResult(a_weight: Double, a_weightUnit: WeightUnit, a_height: Double, a_heightUnit: HeightUnit, a_bmi: Double)
+    {
+        val sharedPrefs = applicationContext.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+
+        val sdf = SimpleDateFormat("dd/M/yyyy HH:mm:ss", Locale.US)
+        val currentDate = sdf.format(Date())
+
+        val weight = String.format("%.2f", a_weight)
+        val height = String.format("%.2f", a_height)
+        val bmi    = String.format("%.2f", a_bmi)
+        val jsonRecord = "$weight;$a_weightUnit;$height;$a_heightUnit;$bmi;$currentDate"
+
+        var previousRecordsJson = sharedPrefs.getString(RECORD_KEY, "[]")
+
+        // if stored elements reached limit, then remove last
+        val previousSize = sizeOfJSONArray(previousRecordsJson)
+        if (previousSize == NUM_OF_CALCULATIONS_TO_STORE)
+        {
+            previousRecordsJson = drop(previousRecordsJson)
+        }
+
+
+        sharedPrefs.edit().putString(RECORD_KEY, addToJSONArray(jsonRecord, previousRecordsJson)).apply()
+    }
+
+
+
+    private fun getBmiHashMap(a_history: String): HashMap<Int, BmiStorage>
+    {
+        val history = JSONtoArray(a_history)
+
+        val res = HashMap<Int, BmiStorage>()
+
+        var splitted : List<String>
+        var bmi      : Double
+
+        for (recordIdx in history.indices)
+        {
+            splitted = history[recordIdx].split(";")
+
+            bmi = splitted[STORE_BMI_IDX].toDouble()
+
+            res[recordIdx] = BmiStorage(
+                splitted[STORE_WEIGHT_IDX],
+                splitted[STORE_WEIGHT_UNIT_IDX],
+                splitted[STORE_HEIGHT_IDX],
+                splitted[STORE_HEIGHT_UNIT_IDX],
+                splitted[STORE_BMI_IDX],
+                splitted[STORE_DATE_IDX],
+                getBmiString(bmi)
+            )
+        }
+
+        return res
+    }
+
+
+
+    private fun getData(): String
+    {
+        return applicationContext.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE).getString(RECORD_KEY, "[]")
     }
 
 }

@@ -64,4 +64,20 @@
     <dimen name="bmi_mainActivity_buttonInfoMarginStartLand">8dp</dimen>
     <dimen name="bmi_mainActivity_buttonInfoMarginEnd">8dp</dimen>
     <dimen name="bmi_activityAbout_emailContentHeight">0dp</dimen>
+    <dimen name="bmi_saved_element_height">140dp</dimen>
+    <dimen name="bmi_saved_element_margin">3dp</dimen>
+    <dimen name="bmi_saved_element_right_margin">6dp</dimen>
+    <dimen name="bmi_saved_element_left_margin">6dp</dimen>
+    <dimen name="bmi_saved_element_weight_margin">8dp</dimen>
+    <dimen name="bmi_saved_element_weight_label_text_size">16sp</dimen>
+    <dimen name="bmi_saved_element_height_margin">8dp</dimen>
+    <dimen name="bmi_saved_element_height_text_size">16sp</dimen>
+    <dimen name="bmi_saved_element_date_margin">8dp</dimen>
+    <dimen name="bmi_saved_element_date_text_size">14sp</dimen>
+    <dimen name="bmi_saved_element_bmi_margin">8dp</dimen>
+    <dimen name="bmi_saved_element_bmi_text_size">30sp</dimen>
+    <dimen name="bmi_saved_element_bmi_string_margin">8dp</dimen>
+    <dimen name="bmi_saved_element_padding">7dp</dimen>
+    <dimen name="bmi_saved_element_weight_text_size">16sp</dimen>
+    <dimen name="bmi_saved_element_height_label_text_size">16sp</dimen>
 </resources>

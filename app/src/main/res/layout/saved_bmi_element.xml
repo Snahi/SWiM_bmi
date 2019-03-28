@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="@dimen/bmi_saved_element_height"
+                                             android:background="@color/colorPrimary"
+                                             android:layout_marginTop="@dimen/bmi_saved_element_margin"
+                                             android:layout_marginBottom="@dimen/bmi_saved_element_margin"
+                                             android:layout_marginStart="@dimen/bmi_saved_element_left_margin"
+                                             android:layout_marginEnd="@dimen/bmi_saved_element_right_margin"
+                                             android:padding="@dimen/bmi_saved_element_padding"
+                                            >
+
+    <TextView
+            android:text="@string/bmi_saved_element_weight_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_weight_label"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            android:layout_marginEnd="@dimen/bmi_saved_element_weight_margin" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/bmi_saved_element_weight_margin" android:layout_marginBottom="@dimen/bmi_saved_element_weight_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/bmi_saved_element_weight_margin" app:layout_constraintTop_toTopOf="@+id/guideline7"
+            app:layout_constraintHorizontal_bias="0.559" app:layout_constraintVertical_bias="0.372"
+            android:textStyle="bold" android:textSize="@dimen/bmi_saved_element_weight_label_text_size"/>
+    <TextView
+            android:text="@string/bmi_saved_element_init_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_weight"
+            android:layout_marginTop="@dimen/bmi_saved_element_weight_margin"
+            app:layout_constraintTop_toBottomOf="@+id/history_weight_label"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="@dimen/bmi_saved_element_weight_margin"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3" android:layout_marginEnd="@dimen/bmi_saved_element_weight_margin"
+            android:textSize="@dimen/bmi_saved_element_weight_text_size"/>
+    <android.support.constraint.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                          android:id="@+id/guideline3"
+                                          android:orientation="vertical"
+                                          app:layout_constraintGuide_percent="0.3"/>
+    <android.support.constraint.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                          android:id="@+id/guideline6"
+                                          android:orientation="vertical"
+                                          app:layout_constraintGuide_percent="0.6"/>
+    <TextView
+            android:text="@string/bmi_saved_element_height_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_height_label"
+            app:layout_constraintEnd_toStartOf="@+id/guideline6"
+            android:layout_marginEnd="@dimen/bmi_saved_element_height_margin" android:layout_marginBottom="@dimen/bmi_saved_element_height_margin"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="@+id/guideline3"
+            android:layout_marginStart="@dimen/bmi_saved_element_height_margin" android:layout_marginTop="@dimen/bmi_saved_element_height_margin"
+            app:layout_constraintTop_toTopOf="@+id/guideline7" app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintVertical_bias="0.338" android:textSize="@dimen/bmi_saved_element_height_label_text_size" android:textStyle="bold"/>
+    <TextView
+            android:text="@string/bmi_saved_element_init_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_height" android:layout_marginTop="@dimen/bmi_saved_element_height_margin"
+            app:layout_constraintTop_toBottomOf="@+id/history_height_label"
+            app:layout_constraintEnd_toStartOf="@+id/guideline6" android:layout_marginEnd="@dimen/bmi_saved_element_height_margin"
+            app:layout_constraintStart_toStartOf="@+id/guideline3" android:layout_marginStart="@dimen/bmi_saved_element_height_margin"
+            android:textSize="@dimen/bmi_saved_element_height_text_size"/>
+    <android.support.constraint.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                          android:id="@+id/guideline7"
+                                          android:orientation="horizontal"
+                                          app:layout_constraintGuide_percent="0.1"/>
+    <TextView
+            android:text="@string/bmi_saved_element_init_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_date"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="@dimen/bmi_saved_element_date_margin"
+            android:layout_marginBottom="@dimen/bmi_saved_element_date_margin" app:layout_constraintBottom_toTopOf="@+id/guideline7"
+            android:layout_marginTop="@dimen/bmi_saved_element_date_margin" app:layout_constraintTop_toTopOf="parent" android:textSize="@dimen/bmi_saved_element_date_text_size"
+            android:textStyle="bold"/>
+    <TextView
+            android:text="@string/bmi_saved_element_init_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_bmi"
+            android:layout_marginBottom="@dimen/bmi_saved_element_bmi_margin"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/bmi_saved_element_bmi_margin" app:layout_constraintStart_toStartOf="@+id/guideline6"
+            android:layout_marginStart="@dimen/bmi_saved_element_bmi_margin"
+            android:textSize="@dimen/bmi_saved_element_bmi_text_size"
+            android:layout_marginTop="@dimen/bmi_saved_element_bmi_margin"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.313"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_bmi_string" android:layout_marginTop="@dimen/bmi_saved_element_bmi_string_margin"
+            app:layout_constraintTop_toBottomOf="@+id/history_bmi"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            android:layout_marginStart="@dimen/bmi_saved_element_bmi_string_margin" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/bmi_saved_element_bmi_string_margin"/>
+</android.support.constraint.ConstraintLayout>
